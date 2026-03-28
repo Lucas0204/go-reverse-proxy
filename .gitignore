@@ -1,0 +1,36 @@
+# Binaries
+/bin/
+/dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.out
+
+# Test binary, coverage
+*.test
+*.cover
+coverage.out
+
+# Vendor (opcional - remova se usar vendoring)
+vendor/
+
+# Logs
+*.log
+logs/
+
+# Env files
+.env
+.env.*
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Temporary files
+/tmp/
+*.cache
