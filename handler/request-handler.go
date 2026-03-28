@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"go-reverse-proxy/proxy"
+	"go-reverse-proxy/core"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -16,16 +16,16 @@ func (rh RequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	rh.router.ServeHTTP(w, r)
 }
 
-func NewRequestHandler() http.Handler {
+func NewRequestHandler(proxyMiddleware *core.ProxyMiddleware) http.Handler {
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 
-	router.Use(proxy.Middleware)
+	router.Use(proxyMiddleware.Middleware)
 
 	// this route definition serves to prevent 404 in requests to the server
-	// and does not have implementation because proxy middleware is responsible
-	// for handling all requests (doing proxy pass)
+	// and does not have implementation because core middleware is responsible
+	// for handling all requests (doing core pass)
 	router.Route("/", func(r chi.Router) {})
 
 	return RequestHandler{
