@@ -25,7 +25,7 @@ func (m *ProxyMiddleware) Middleware(next http.Handler) http.Handler {
 		//block := m.config.FindBlocksByName("http")
 		//parser.PrintBlock(block[0], 0)
 
-		// get location block that matches request
+		// get a location block that matches the request
 		locationBlock := m.findMatchLocation(r.URL)
 		if locationBlock != nil {
 			w.Write([]byte("Proxy passing!"))
